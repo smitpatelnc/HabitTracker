@@ -1,0 +1,145 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\HabitTracker.bundle.scp.css",
+      "PackagePath": "staticwebassets\\HabitTracker.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\confetti_PNG87001.png",
+      "PackagePath": "staticwebassets\\Images\\confetti_PNG87001.png"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\home.jpg",
+      "PackagePath": "staticwebassets\\Images\\home.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\home1.jpg",
+      "PackagePath": "staticwebassets\\Images\\home1.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\katrina-wright-yMg_SMqfoRU-unsplash.jpg",
+      "PackagePath": "staticwebassets\\Images\\katrina-wright-yMg_SMqfoRU-unsplash.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\progress tracker.jpg",
+      "PackagePath": "staticwebassets\\Images\\progress tracker.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\reminder.jpg",
+      "PackagePath": "staticwebassets\\Images\\reminder.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\set goals.jpg",
+      "PackagePath": "staticwebassets\\Images\\set goals.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\track habit.jpg",
+      "PackagePath": "staticwebassets\\Images\\track habit.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\Images\\track.jpg",
+      "PackagePath": "staticwebassets\\Images\\track.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\home.jpg",
+      "PackagePath": "staticwebassets\\home.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\home1.jpg",
+      "PackagePath": "staticwebassets\\home1.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\katrina-wright-yMg_SMqfoRU-unsplash.jpg",
+      "PackagePath": "staticwebassets\\katrina-wright-yMg_SMqfoRU-unsplash.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\progress tracker.jpg",
+      "PackagePath": "staticwebassets\\progress tracker.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\reminder.jpg",
+      "PackagePath": "staticwebassets\\reminder.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\set goals.jpg",
+      "PackagePath": "staticwebassets\\set goals.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\track habit.jpg",
+      "PackagePath": "staticwebassets\\track habit.jpg"
+    },
+    {
+      "Id": "D:\\sem 4\\Mobile\\HabitTracker\\wwwroot\\track.jpg",
+      "PackagePath": "staticwebassets\\track.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.HabitTracker.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.HabitTracker.props",
+      "PackagePath": "build\\HabitTracker.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.HabitTracker.props",
+      "PackagePath": "buildMultiTargeting\\HabitTracker.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.HabitTracker.props",
+      "PackagePath": "buildTransitive\\HabitTracker.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

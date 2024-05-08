@@ -1,0 +1,207 @@
+﻿@page "/"
+@using HabitTracker.Models
+@using HabitTracker.Services
+@inject IHabitService HabitService
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components
+@inject IJSRuntime JSRuntime
+
+<div class="header-container">
+    <div class="header-content">
+        <h1>Welcome to Habit Tracker</h1>
+        <p>
+            This is a simple habit tracking application. Start tracking your habits today!
+        </p>
+    </div>
+</div>
+
+<div class="quick-start">
+    <h2>Quick Start</h2>
+    <p>
+        To get started, click the button below to go to the Habit Tracker page.
+    </p>
+    <button class="custom-button" @onclick="GoToHabitTracker">Go to Habit Tracker</button>
+</div>
+
+<div class="features">
+    <h2>Check out our features:</h2>
+    <div class="feature">
+        <a href="/habittracker">
+            <div class="image-container">
+                <img src="/track habit.jpg" alt="Track Habit" />
+            </div>
+        </a>
+        <p>Track your habits easily</p>
+    </div>
+    <div class="feature">
+        <a href="/exercise-timer">
+            <div class="image-container">
+                <img src="/set goals.jpg" alt="Set Goals" />
+            </div>
+        </a>
+        <p>Set goals and monitor progress</p>
+    </div>
+    <div class="feature">
+        <a href="/food">
+            <div class="image-container">
+                <img src="/reminder.jpg" alt="Receive Reminder" />
+            </div>
+        </a>
+        <p>Eat, Exercise, Sleep, Repeat</p>
+    </div>
+           
+</div>
+
+<style>
+    /* Custom Button Styles */
+    .custom-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .custom-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Quick Start Section */
+    .quick-start {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .quick-start h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .features {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .feature {
+        display: inline-block;
+        margin-right: 20px;
+        vertical-align: top;
+    }
+
+    .header-container {
+        background-color: #4CAF50; /* Green background color */
+        color: black; /* White text color */
+        padding: 10px;
+        text-align: center;
+    }
+
+    .header-content {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .feature:last-child {
+        margin-right: 0;
+    }
+
+    .image-container {
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .image-container:hover {
+        transform: translateY(-5px);
+    }
+
+    .image-container img {
+        width: 200px;
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .feature p {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+    }
+
+</style>
+
+@code {
+    private void GoToHabitTracker()
+    {
+        NavigationManager.NavigateTo("/habittracker");
+    }
+    private System.Timers.Timer timer;
+    private bool timerStarted;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !timerStarted)
+        {
+            // Start the timer after the first render
+            timer = new System.Timers.Timer();
+            timer.Interval = TimeSpan.FromMinutes(5).TotalMilliseconds;
+            timer.Elapsed += async (sender, e) => await TimerElapsed();
+            timer.Start();
+
+            timerStarted = true;
+        }
+    }
+
+    private async Task TimerElapsed()
+    {
+        var currentTime = DateTime.Now;
+
+        // Determine the time of day
+        string timeOfDayMessage = currentTime.Hour switch
+        {
+            // Morning (6 AM to 11:59 AM)
+            int hour when hour >= 6 && hour < 12 => "Don't forget to finish your morning routine!",
+
+            // Afternoon (12 PM to 5:59 PM)
+            int hour when hour >= 12 && hour < 18 => "Don't forget to finish your afternoon routine!",
+
+            // Evening (6 PM to 11:59 PM)
+            int hour when hour >= 18 && hour < 24 => "Don't forget to finish your evening routine!",
+
+            // Night (12 AM to 5:59 AM)
+            _ => "It's late! Time to rest and prepare for tomorrow."
+        };
+
+        // Call JavaScript function to show notification
+        await JSRuntime.InvokeVoidAsync("showNotification", "Routine Reminder", timeOfDayMessage);
+    }
+
+}
+
+<script>
+    function showNotification(title, message) {
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission();
+        } else {
+            var notification = new Notification(title, {
+                body: message
+            });
+        }
+    }
+</script>

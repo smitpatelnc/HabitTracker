@@ -1,0 +1,107 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = HabitTracker
+build_property.RootNamespace = HabitTracker
+build_property.ProjectDir = D:\sem 4\Mobile\HabitTracker\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\sem 4\Mobile\HabitTracker
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/sem 4/Mobile/HabitTracker/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/AddNewFood.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkTmV3Rm9vZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/DetailArticle.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV0YWlsQXJ0aWNsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/ExerciseTimerPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXhlcmNpc2VUaW1lclBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/FoodDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZERldGFpbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/Foods.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/HabitAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGFiaXRBZGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/HabitTracking.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGFiaXRUcmFja2luZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/HealthArticle.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGVhbHRoQXJ0aWNsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/ReminderNotification.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVtaW5kZXJOb3RpZmljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/RoutineAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGluZUFkZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/Routinedetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGluZWRldGFpbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/RoutineEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGluZUVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/Routinemanagement.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGluZW1hbmFnZW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-g29lzqgz04
+
+[D:/sem 4/Mobile/HabitTracker/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-4rxi9b6y8d
+
+[D:/sem 4/Mobile/HabitTracker/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem 4/Mobile/HabitTracker/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

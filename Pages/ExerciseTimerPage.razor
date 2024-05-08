@@ -1,0 +1,195 @@
+﻿@page "/exercise-timer"
+@inject IJSRuntime jsRuntime
+@using HabitTracker.Data
+@inject AppDbContext dbContext
+
+<!-- Include Animate.css -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+
+<h3 class="text-center mb-4">Exercise Timer</h3>
+
+<!-- Modal for displaying exercise summary -->
+<div class="modal" id="stopConfirmationModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Exercise Summary</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Elapsed Time: @ElapsedTime.ToString("hh\\:mm\\:ss")</p>
+                <p>Calories Burned: @CaloriesBurned.ToString("0.00") kcal</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Select Exercise</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        @foreach (var exercise in ExerciseList)
+                        {
+                            <button type="button" class="list-group-item list-group-item-action" @onclick="() => StartTimerForExercise(exercise)">
+                                @exercise.Name
+                                <span class="badge badge-primary badge-pill" style="color:blue">@exercise.CaloriesPerMinute calories/min</span>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Selected Exercise: @SelectedExercise?.Name</h5>
+                </div>
+                <div class="card-body">
+                    <div class="timer mb-3">
+                        <h6 class="mb-2">Elapsed Time</h6>
+                        <span class="display-4">@ElapsedTime.ToString("hh\\:mm\\:ss")</span>
+                    </div>
+                    <div class="calories mb-3">
+                        <h6 class="mb-2">Calories Burned</h6>
+                        <span class="font-weight-bold">@CaloriesBurned.ToString("0.00")</span> kcal
+                    </div>
+                    <div class="controls">
+                        <button class="btn btn-primary btn-block" @onclick="StartOrPauseTimer">@(IsTimerRunning ? "Pause" : "Start")</button>
+                        <button class="btn btn-danger btn-block mt-2" @onclick="StopTimer" data-toggle="modal" data-target="#stopConfirmationModal">Stop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Celebratory Pop-up Message Box -->
+<div id="celebrationPopup" class="celebration-popup" style="display: none;">
+    <button class="btn btn-primary" @onclick="CloseCelebrationPopup">Close</button>
+</div>
+
+@code {
+    public class Exercise
+    {
+        public string Name { get; set; }
+        public double CaloriesPerMinute { get; set; }
+    }
+
+    public List<Exercise> ExerciseList { get; set; }
+    private Exercise SelectedExercise { get; set; }
+    private TimeSpan ElapsedTime { get; set; }
+    private System.Timers.Timer Timer { get; set; }
+    private bool IsTimerRunning { get; set; }
+    private double CaloriesBurned { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ExerciseList = new List<Exercise>
+        {
+            new Exercise { Name = "Running", CaloriesPerMinute = 10 },
+            new Exercise { Name = "Jogging", CaloriesPerMinute = 8 },
+            new Exercise { Name = "Walking", CaloriesPerMinute = 5 },
+            new Exercise { Name = "Swimming", CaloriesPerMinute = 12 },
+            new Exercise { Name = "Cycling", CaloriesPerMinute = 7 },
+            new Exercise { Name = "Jumping Jacks", CaloriesPerMinute = 15 },
+            new Exercise { Name = "Push-ups", CaloriesPerMinute = 12 },
+            new Exercise { Name = "Sit-ups", CaloriesPerMinute = 10 },
+            new Exercise { Name = "Burpees", CaloriesPerMinute = 18 },
+            new Exercise { Name = "Climbing Stairs", CaloriesPerMinute = 10 },
+            new Exercise { Name = "Jump Rope", CaloriesPerMinute = 15 },
+            new Exercise { Name = "Dancing", CaloriesPerMinute = 8 },
+            new Exercise { Name = "Hiking", CaloriesPerMinute = 6 },
+            new Exercise { Name = "Yoga", CaloriesPerMinute = 5 },
+            new Exercise { Name = "Pilates", CaloriesPerMinute = 6 }
+        };
+
+        ElapsedTime = TimeSpan.Zero;
+        IsTimerRunning = false;
+    }
+
+    private void StartTimerForExercise(Exercise exercise)
+    {
+        SelectedExercise = exercise;
+        ElapsedTime = TimeSpan.Zero; // Reset elapsed time for each exercise
+        CaloriesBurned = 0; // Reset calories burned for each exercise
+    }
+
+    private void StartOrPauseTimer()
+    {
+        if (!IsTimerRunning)
+        {
+            StartTimer();
+        }
+        else
+        {
+            PauseTimer();
+        }
+    }
+
+    private void StartTimer()
+    {
+        Timer = new System.Timers.Timer(1000);
+        Timer.Elapsed += Timer_Elapsed;
+        Timer.Start();
+        IsTimerRunning = true;
+    }
+
+    private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+        ElapsedTime = ElapsedTime.Add(TimeSpan.FromSeconds(1));
+        CaloriesBurned = ElapsedTime.TotalMinutes * SelectedExercise.CaloriesPerMinute;
+        InvokeAsync(() => StateHasChanged());
+    }
+
+    private void PauseTimer()
+    {
+        Timer.Stop();
+        IsTimerRunning = false;
+        InvokeAsync(() => StateHasChanged());
+    }
+
+    private async Task StopTimer()
+    {
+        if (IsTimerRunning)
+        {
+            Timer.Stop();
+            Timer.Dispose(); // Dispose of the timer to release resources
+            IsTimerRunning = false;
+
+            // Reset elapsed time and calories burned to zero
+            ElapsedTime = TimeSpan.Zero;
+            CaloriesBurned = 0;
+
+            // Save exercise data to the database
+            var exerciseRecord = new Models.ExerciseTimer
+                {
+                    ExerciseName = SelectedExercise.Name,
+                    ElapsedTime = ElapsedTime,
+                    CaloriesBurned = CaloriesBurned,
+                    Timestamp = DateTime.Now
+                };
+
+            dbContext.ExerciseTimerData.Add(exerciseRecord);
+            await dbContext.SaveChangesAsync();
+
+            // Show the modal with exercise summary
+            jsRuntime.InvokeVoidAsync("showStopConfirmationModal", ElapsedTime.ToString("hh\\:mm\\:ss"), CaloriesBurned.ToString("0.00"));
+            await InvokeAsync(() => StateHasChanged());
+        }
+    }
+
+
+    // Method to handle the close button click and hide the pop-up
+    private async Task CloseCelebrationPopup()
+    {
+        await jsRuntime.InvokeVoidAsync("closeCelebrationPopup");
+    }
+}

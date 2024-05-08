@@ -1,0 +1,8 @@
+﻿Add-Migration -Context AppDbContext -OutputDir Data\Migrations Initial
+Update-Database -Context AppDbContext
+
+Add-Migration -Context CateringContext -o Data\CMMigrations Initial
+Update-Database -Context AppDbContext
+
+Remeber to add...
+            ExtraMigration.Steps(migrationBuilder);

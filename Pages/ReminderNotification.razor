@@ -1,0 +1,26 @@
+﻿@page "/reminder-notification"
+@using Microsoft.AspNetCore.Components
+@inject IJSRuntime JSRuntime
+
+<h3>Reminder Notification</h3>
+
+@code {
+    private System.Timers.Timer timer;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Create the timer
+        timer = new System.Timers.Timer();
+        timer.Interval = TimeSpan.FromSeconds(10).TotalMilliseconds; // Interval set to 5 seconds
+        timer.Elapsed += async (sender, e) => await TimerElapsed();
+        timer.Start();
+    }
+
+    private async Task TimerElapsed()
+    {
+        // Call JavaScript function to show alert
+        await JSRuntime.InvokeVoidAsync("alert", "Reminder: Don't forget to take a break!");
+    }
+}

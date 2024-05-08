@@ -1,0 +1,162 @@
+﻿@page "/routine-details/{RoutineId}"
+@using HabitTracker.Models
+@using Microsoft.EntityFrameworkCore
+@using HabitTracker.Data
+@inject NavigationManager NavigationManager
+@inject AppDbContext DbContext
+
+<h2>Routine Details</h2>
+
+@if (routine == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="detail-container">
+        <div>
+            <strong>Name:</strong> @routine.Name
+        </div>
+        <div>
+            <strong>Description:</strong> @routine.Description
+        </div>
+        <div>
+            <strong>Is Completed:</strong> @(routine.IsCompleted ? "Completed" : "Incomplete")
+        </div>
+        <div>
+            <strong>Date:</strong> @routine.Date.ToShortDateString()
+        </div>
+        <div>
+            <strong>Duration:</strong> @routine.Duration.ToString(@"hh\:mm")
+        </div>
+        <div>
+            <strong>Priority:</strong> @routine.Priority
+        </div>
+        <div>
+            <strong>Category:</strong> @routine.Category
+        </div>
+        <div>
+            <strong>Location:</strong> @routine.Location
+        </div>
+
+        <div>
+            <strong>Is Flexible:</strong> @(routine.IsFlexible ? "Yes" : "No")
+        </div>
+        <div>
+            <strong>Next Occurrence:</strong> @routine.NextOccurrence.ToShortDateString()
+        </div>
+        <div>
+            <strong>Resources Needed:</strong> @routine.ResourcesNeeded
+        </div>
+        <div>
+            <strong>Notes:</strong> @routine.Notes
+        </div>
+    </div>
+
+}
+
+<button @onclick="GoBack" class="back-button">Back to Routines</button>
+
+
+@code {
+    Routine routine;
+
+    [Parameter]
+    public string RoutineId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(RoutineId))
+        {
+            if (int.TryParse(RoutineId, out int id))
+            {
+                routine = await DbContext.Routines.FindAsync(id);
+            }
+            else
+            {
+                // Handle invalid RoutineId
+            }
+        }
+    }
+
+    private void GoBack()
+    {
+        // Navigate back to the routines page
+        NavigationManager.NavigateTo("/routines");
+    }
+}
+
+<style>
+    .detail-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #f4f4f4;
+    }
+
+        .detail-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333333;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+    .detail-item {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #dddddd;
+        padding-bottom: 20px;
+    }
+
+        .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .detail-item strong {
+            font-size: 18px;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .detail-item p {
+            font-size: 16px;
+            color: #555555;
+            margin: 0;
+        }
+
+    .status {
+        font-weight: bold;
+        font-size: 18px;
+        color: #28a745;
+    }
+
+        .status.incomplete {
+            color: #dc3545;
+        }
+
+    .duration {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 22px;
+        color: #333333;
+    }
+
+    .back-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+</style>

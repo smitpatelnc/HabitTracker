@@ -1,0 +1,205 @@
+﻿@page "/routines"
+@using HabitTracker.Models
+@using Microsoft.EntityFrameworkCore
+@using HabitTracker.Data
+@inject AppDbContext DbContext
+@inject NavigationManager NavigationManager
+@inject IJSRuntime jsRuntime
+
+<h2 class="page-title">Routines</h2>
+
+<div class="filter-container">
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search by name" @bind="searchTerm" />
+        <button class="search-button" @onclick="Search">Search</button>
+    </div>
+    <button class="add-button" @onclick="AddNewRoutine">Add New Routine</button>
+</div>
+
+@if (routines == null)
+{
+    <p>Loading...</p>
+}
+else if (filteredRoutines.Count == 0)
+{
+    <p>No routines found.</p>
+}
+else
+{
+    <div class="table-container">
+        <table class="routine-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Is Completed</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var routine in filteredRoutines)
+                {
+                    <tr>
+                        <td>@routine.Name</td>
+                        <td>@routine.Description</td>
+                        <td>@(routine.IsCompleted ? "Yes" : "No")</td>
+                        <td>@routine.Date.ToShortDateString()</td>
+                        <td>@routine.Duration.ToString("hh\\:mm")</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="detail-button" @onclick="() => ViewDetails(routine)">Detail</button>
+                                <button class="edit-button" @onclick="() => EditRoutine(routine)">Edit</button>
+                                <button class="delete-button" @onclick="() => DeleteRoutine(routine)">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    List<Routine> routines;
+    List<Routine> filteredRoutines;
+    string searchTerm;
+
+    protected override async Task OnInitializedAsync()
+    {
+        routines = await DbContext.Routines.ToListAsync();
+        FilterRoutines();
+    }
+
+    private void AddNewRoutine()
+    {
+        NavigationManager.NavigateTo("/add-routine");
+    }
+
+    private async Task DeleteRoutine(Routine routine)
+    {
+        if (await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this routine?"))
+        {
+            DbContext.Routines.Remove(routine);
+            await DbContext.SaveChangesAsync();
+            routines.Remove(routine);
+            FilterRoutines();
+        }
+    }
+
+    private void FilterRoutines()
+    {
+        filteredRoutines = routines.Where(r =>
+            string.IsNullOrEmpty(searchTerm) || r.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+        ).ToList();
+    }
+
+    private void Search()
+    {
+        FilterRoutines();
+    }
+
+    private void EditRoutine(Routine routine)
+    {
+        NavigationManager.NavigateTo($"/edit-routine/{routine.ID}");
+    }
+
+    private void ViewDetails(Routine routine)
+    {
+        NavigationManager.NavigateTo($"/routine-details/{routine.ID}");
+    }
+}
+
+<style>
+    .page-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .filter-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        padding: 8px;
+        margin-right: 10px;
+    }
+
+    .search-button,
+    .add-button {
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .add-button {
+        background-color: #28a745;
+        margin-left: 10px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .routine-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .routine-table th,
+        .routine-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .routine-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+    .action-buttons {
+        display: flex;
+    }
+
+    .detail-button,
+    .edit-button,
+    .delete-button {
+        padding: 6px 12px;
+        margin-right: 5px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .detail-button {
+        background-color: #17a2b8;
+        color: #fff;
+    }
+
+    .edit-button {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+    .delete-button {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+        .detail-button:hover,
+        .edit-button:hover,
+        .delete-button:hover {
+            filter: brightness(85%);
+        }
+</style>

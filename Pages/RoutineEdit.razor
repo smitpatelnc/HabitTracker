@@ -1,0 +1,118 @@
+﻿@page "/edit-routine/{RoutineId}"
+@using HabitTracker.Models
+@using Microsoft.EntityFrameworkCore
+@using HabitTracker.Data
+@inject NavigationManager NavigationManager
+@inject AppDbContext DbContext
+
+<h2>Edit Routine</h2>
+
+@if (routine == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="form-container">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" @bind="routine.Name" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" class="form-control" @bind="routine.Description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="isCompleted">Is Completed:</label>
+            <input type="checkbox" id="isCompleted" class="form-check-input" @bind="routine.IsCompleted" />
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" class="form-control" @bind="routine.Date" />
+        </div>
+
+        <div class="form-group">
+            <label for="priority">Priority:</label>
+            <input type="number" id="priority" class="form-control" @bind="routine.Priority" />
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" class="form-control" @bind="routine.Category" />
+        </div>
+
+        <div class="form-group">
+            <label for="duration">Duration (in minutes):</label>
+            <input type="number" id="duration" class="form-control" @bind="routine.Duration" />
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" class="form-control" @bind="routine.Location" />
+        </div>
+
+       
+        <div class="form-group">
+            <label for="isFlexible">Is Flexible:</label>
+            <input type="checkbox" id="isFlexible" class="form-check-input" @bind="routine.IsFlexible" />
+        </div>
+
+        <div class="form-group">
+            <label for="nextOccurrence">Next Occurrence:</label>
+            <input type="datetime-local" id="nextOccurrence" class="form-control" @bind="routine.NextOccurrence" />
+        </div>
+
+        <div class="form-group">
+            <label for="resourcesNeeded">Resources Needed:</label>
+            <input type="text" id="resourcesNeeded" class="form-control" @bind="routine.ResourcesNeeded" />
+        </div>
+
+        <div class="form-group">
+            <label for="notes">Notes:</label>
+            <textarea id="notes" class="form-control" @bind="routine.Notes"></textarea>
+        </div>
+        <div>
+        <button class="btn btn-primary" @onclick="SaveChanges">Save Changes</button>
+        <button class="btn btn-primary" @onclick="GoBack">Back to Routines</button>
+        </div>
+
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string RoutineId { get; set; }
+
+    Routine routine;
+
+    protected override async Task OnInitializedAsync()
+    {
+        routine = await DbContext.Routines.FindAsync(int.Parse(RoutineId));
+    }
+
+    private async Task SaveChanges()
+    {
+        try
+        {
+            // Update the routine in the database
+            await DbContext.SaveChangesAsync();
+            // Navigate back to the routines list after saving changes
+            NavigationManager.NavigateTo("/routines");
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions
+            Console.WriteLine($"Error saving changes: {ex.Message}");
+        }
+    }
+
+    private void GoBack()
+    {
+        // Navigate back to the routines list
+        NavigationManager.NavigateTo("/routines");
+    }
+
+}

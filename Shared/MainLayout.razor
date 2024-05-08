@@ -1,0 +1,58 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>HabitTracker</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<style>
+    /* Main page layout */
+    .page {
+        display: flex;
+        flex-direction: row;
+        height: 100vh; /* Make sure the page fills the entire viewport height */
+    }
+    /* Top row links */
+    .top-row {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .top-row .spacer {
+            margin: 0 -18px; /* Add space between links */
+        }
+
+        .top-row a {
+            text-decoration: none;
+            color: #333;
+            margin-right: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+    /* Article content */
+    .content {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
